@@ -4,7 +4,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import {
   ArrowsRightLeftIcon,
-  HomeIcon
+  QueueListIcon
 } from '@heroicons/react/24/solid';
 
 const Menu: FC = () => {
@@ -29,7 +29,7 @@ const Menu: FC = () => {
             }
           )}
         >
-          {icon === 'Home' && (<HomeIcon className="inline w-6 h-6" />)}
+          {icon === 'QueueList' && (<QueueListIcon className="inline w-6 h-6" />)}
           {icon === 'ArrowsRightLeft' && (<ArrowsRightLeftIcon className="inline w-6 h-6" />)}
           <span>{name}</span>
         </button>
@@ -41,7 +41,7 @@ const Menu: FC = () => {
     const { pathname } = useRouter();
     return (
       <>
-        <NavItem url="/" name="Home" current={pathname == '/'} icon="Home" />
+        <NavItem url="/" name="New Pools" current={pathname == '/'} icon="QueueList" />
         <NavItem url="swaps" name="Latest Swaps" current={pathname == 'swaps'} icon="ArrowsRightLeft" />
       </>
     );
