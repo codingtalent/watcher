@@ -27,7 +27,7 @@ const Navbar: FC<NavbarProps> = () => {
         <>
           <div className="flex-grow md:flex space-x-2 hidden flex-row-reverse">
             <div><BellIcon className="inline w-6 h-6" /></div>
-            <div><MagnifyingGlassIcon className="inline w-6 h-6 mr-8" /></div>
+            {/*<div><MagnifyingGlassIcon className="inline w-6 h-6 mr-8" /></div>*/}
           </div>
         </>
       }
