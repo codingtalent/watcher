@@ -24,7 +24,7 @@ export const executeQuery = async (id: string, parameters: any) => {
       result.cache = true;
       result.data = { 'execution_id': dQuery.execution_id, 'state': ''};
     } else {
-      const { data } = await instance.post(`/query/${id}/execute`);
+      const { data } = await instance.post(`/query/${id}/execute`, parameters);
       await prisma.duneQuery.create({
         data: { id: String(key), execution_id: data.execution_id },
       })
