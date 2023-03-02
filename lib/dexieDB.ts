@@ -76,15 +76,23 @@ export class MyDexie extends Dexie {
     await this.userSwapsAlertDetails.bulkPut(data)
     return timestamp;
   }
-  public async getUserSwapsAlert() {
+  public async getUserSwapsAlertCount() {
     const swapsAlert = await this.userSwapsAlert.where({
       status: 0}
     ).toArray();
+    return swapsAlert.length;
+  }
+  public async getUserSwapsAlert(limit:number=10) {
+    const swapsAlert = await this.userSwapsAlert.where('status').equals(0).limit(limit).toArray();
     return swapsAlert;
   }
-  public async getUserSwapsAlertDetails(timestamp: Number[]) {
-    const details = await this.userSwapsAlertDetails.where(timestamp).anyOf(timestamp).toArray();
+  public async getUserSwapsAlertDetails(timestamp: number[]) {
+    const details = await this.userSwapsAlertDetails.where('timestamp').anyOf(timestamp).toArray();
     return details;
+  }
+  public async deleteUserSwapsAlertData(timestamp: number[]) {
+    await this.userSwapsAlert.bulkDelete(timestamp);
+    await this.userSwapsAlertDetails.where('timestamp').anyOf(timestamp).delete();
   }
 }
 

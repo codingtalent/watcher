@@ -46,7 +46,6 @@ export default function Web(data:any) {
       }
     })()
   }, []);
-  
 
 
   return (
