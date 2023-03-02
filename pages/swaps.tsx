@@ -63,7 +63,7 @@ export default function Web(data:any) {
             )}
           </h2>
           <div className="mt-2">
-            <table className="w-full table-fixed border-collapse border border-gray-300 text-sm">
+            <table className="w-full table-fixed border-collapse border border-gray-300 text-xs">
               <thead>
                 <tr className="border border-gray-300 bg-gray-200 capitalize">
                   <th className="text-left font-normal w-1/12 pl-4 py-2">evt_block_time</th>
