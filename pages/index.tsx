@@ -43,7 +43,7 @@ export default function Web(data:any) {
   const [dateRange, setDateRange] = useState(-1);
   const [loading, setLoading] = useState(false);
   const [poolData, setPoolData] = useState([]);
-  let intervalTimer = null;
+  let intervalTimer:any = 0;
 
   const timerQuery = (blockchain: string, dateRange: number) => {
     intervalTimer = setInterval(() => {
@@ -133,7 +133,7 @@ export default function Web(data:any) {
                 </tr>
               </thead>
               <tbody>
-                {(poolData ?? []).map((item, i) => (
+                {(poolData ?? []).map((item:any, i) => (
                   <tr className={i % 2 == 0 ? "" : "bg-gray-100"} key={`pool${i}`}>
                     <td className="pl-4 py-2">{item.pool_name}</td>
                     <td className="">{item.fee_rate}</td>

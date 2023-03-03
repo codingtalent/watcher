@@ -28,7 +28,7 @@ const deleteUserSwapsAlertData = async (timestamp: number[]) => {
 
 export default function Web(data:any) {
   
-  const [alertData, setAlertData] = useState([]);
+  const [alertData, setAlertData] = useState(new Array<UserSwapsAlert>());
   const [alertDetailsData, setAlertDetailsData] = useState([]);
   const [address, setAddress] = useState(data?.address);
   const [blockchain, setBlockchain] = useState(data?.blockchain);
@@ -70,19 +70,19 @@ export default function Web(data:any) {
     }
   }
 
-  const changeBlockchain = (e:Event) => {
+  const changeBlockchain = (e:React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
-    let bc= e.target?.value;
+    let bc= e.target.value;
     setBlockchain(bc);
     setApplyState(watchingItem, bc, address, threshold);
   }
-  const changeThreshold = (e:Event) => {
+  const changeThreshold = (e:React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
-    let th = Number(e.target?.value);
+    let th = Number(e.target.value);
     setThreshold(th);;
     setApplyState(watchingItem, blockchain, address, th);
   }
-  const applyAlertSetting = (e:Event) => {
+  const applyAlertSetting = (e:React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(blockchain!='' && address!='' && threshold!=0){
       (async () => {
@@ -97,7 +97,7 @@ export default function Web(data:any) {
       })()
     }
   }
-  const dismissAlert = (e:Event) => {
+  const dismissAlert = (e:React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     (async () => {
       alertData
@@ -132,7 +132,7 @@ export default function Web(data:any) {
               <option value="10000">10000</option>
               <option value="100000">100000</option>
             </select>
-            <button disabled={isWatching} onClick={(e:Event) => applyAlertSetting(e)} className="py-2 px-4 rounded border border-gray-200 disabled:bg-gray-300 disabled:text-black disabled:cursor-text cursor-pointer bg-blue-900 text-white">{ isWatching ? "Watching" : "Apply"}</button>
+            <button disabled={isWatching} onClick={(e) => applyAlertSetting(e)} className="py-2 px-4 rounded border border-gray-200 disabled:bg-gray-300 disabled:text-black disabled:cursor-text cursor-pointer bg-blue-900 text-white">{ isWatching ? "Watching" : "Apply"}</button>
           </div>
           <div className=" mt-2">
             { alertData.length > 0 && (
@@ -142,7 +142,7 @@ export default function Web(data:any) {
             )}
             {(alertData ?? []).map((item, i) => (
               <AlertList key={`alertData${i}`} timestamp={item.timestamp} list={
-                alertDetailsData.filter((ditem,index,array)=>{
+                alertDetailsData.filter((ditem:UserSwapsAlert)=>{
                   return ditem.timestamp == item.timestamp;
                 })
               } />
