@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 
-const fetchSwapsData = async (blockchain: string, pool: string) => {
+const fetchSwapsData = async (blockchain: string, pool: string) => {//formatDate 'default value'
   let formatDate = moment().format('YYYY-MM-DD HH:00:00');
-  const res = await axios.get("/api/dune/2056310?blockchain=" + blockchain + "&current_hour=" + 'default value' + "&pool=" + pool);
+  const res = await axios.get("/api/dune/2056310?blockchain=" + blockchain + "&current_hour=" + formatDate + "&pool=" + pool);
   return res.data;
 };
 
@@ -74,7 +74,7 @@ export default function Web(data:any) {
                   <th className="text-left font-normal w-1/12">amount1</th>
                   <th className="text-left font-normal w-2/12">sender</th>
                   <th className="text-left font-normal w-2/12">recipient</th>
-                  <th className="text-left font-normal w-1/12">evt_tx_hash</th>
+                  <th className="text-left font-normal w-2/12">evt_tx_hash</th>
                 </tr>
               </thead>
               <tbody>

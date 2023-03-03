@@ -43,7 +43,7 @@ export default function Web(data:any) {
 
     (async () => {
       let userSwapsAlertPoolItem: any = await db.getSwapsAlertPool();
-      if(typeof(userSwapsAlertPoolItem)!=undefined){
+      if(typeof(userSwapsAlertPoolItem)!="undefined"){
         if(address==''){
           setAddress(userSwapsAlertPoolItem.pool_address);
           setBlockchain(userSwapsAlertPoolItem.blockchain);
