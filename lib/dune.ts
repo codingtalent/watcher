@@ -22,7 +22,7 @@ export const executeQuery = async (id: string, parameters: any) => {
 
     const dQuery = await prisma.duneQuery.findFirst({
       where: {
-        id: BigInt(key),
+        id: key,
         createdAt: { gte: current },
       },
     });
@@ -31,8 +31,11 @@ export const executeQuery = async (id: string, parameters: any) => {
       result.data = { 'execution_id': dQuery.execution_id, 'state': ''};
     } else {
       const { data } = await instance.post(`/query/${id}/execute`, parameters);
+      await prisma.duneQuery.delete({
+        where: { id: key },
+      })
       await prisma.duneQuery.create({
-        data: { id: BigInt(key), query_id: Number(id), execution_id: data.execution_id },
+        data: { id: key, query_id: Number(id), execution_id: data.execution_id },
       })
       result.data = data;
     }
