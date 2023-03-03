@@ -6,7 +6,9 @@ import moment from 'moment';
 
 const fetchSwapsData = async (blockchain: string, pool: string) => {//formatDate 'default value'
   let formatDate = moment().format('YYYY-MM-DD HH:00:00');
-  const res = await axios.get("/api/dune/2056310?blockchain=" + blockchain + "&current_hour=" + formatDate + "&pool=" + pool);
+  const res = await axios.get("/api/dune/2056310?blockchain=" + blockchain + "&current_hour=" + formatDate + "&pool=" + pool).catch(function (error) {
+    return { data: { data: {}}};
+  });
   return res.data;
 };
 

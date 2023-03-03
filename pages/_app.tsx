@@ -10,7 +10,9 @@ import moment from 'moment';
 const Providers: any = lazy(() => import('../components/Common/Providers'));
 
 const fetchSwapsAlertData = async (formatDate: string, blockchain: string, pool: string, amount: number) => {
-  const res = await axios.get("/api/dune/2056547?blockchain=" + blockchain + "&current_hour_minute=" + 'formatDate' + "&pool=" + pool + "&trade_amount_usd=" + amount);
+  const res = await axios.get("/api/dune/2056547?blockchain=" + blockchain + "&current_hour_minute=" + 'formatDate' + "&pool=" + pool + "&trade_amount_usd=" + amount).catch(function (error) {
+    return { data: { data: {}}};
+  });;
   return res.data;
 };
 
