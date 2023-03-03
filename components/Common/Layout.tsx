@@ -15,7 +15,7 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <>
       <Head>
-        <meta name="theme-color" content={'resolvedTheme' === 'dark' ? '#1b1b1d' : '#ffffff'} />
+        <meta name="theme-color" content={'#ffffff'} />
       </Head>
       <div id="content-wrapper" className='w-full mx-auto h-screen flex overflow-hidden'>
         <Aside />
