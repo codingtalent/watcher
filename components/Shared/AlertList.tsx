@@ -7,7 +7,7 @@ export type AlertListProps = {
 }
 
 export default ({ list, timestamp }: AlertListProps) => {
-  let title = "Alert On " + moment(timestamp).format('YYYY-MM-DD HH:MM:SS');
+  let title = "Alert On " + moment(timestamp).format('YYYY-MM-DD hh:mm:ss');
   return (
     <div className="">
       <h3 className="py-2 font-bold">{title}</h3>
@@ -25,7 +25,7 @@ export default ({ list, timestamp }: AlertListProps) => {
         <tbody>
           {(list ?? []).map((item, i) => (
             <tr className={i % 2 == 0 ? "" : "bg-gray-100"} key={`alert${timestamp}${i}`}>
-              <td className="pl-4 py-2">{moment(item.block_time).format("YYYY-MM-DD HH:MM")}</td>
+              <td className="pl-4 py-2">{moment(item.block_time).format("YYYY-MM-DD hh:mm")}</td>
               <td className="">{item.amount_usd.toFixed(2)}</td>
               <td className="">{item.token_pair}</td>
               <td className="">{item.taker}</td>

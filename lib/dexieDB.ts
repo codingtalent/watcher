@@ -83,7 +83,7 @@ export class MyDexie extends Dexie {
     return swapsAlert.length;
   }
   public async getUserSwapsAlert(limit:number=10) {
-    const swapsAlert = await this.userSwapsAlert.where('status').equals(0).limit(limit).toArray();
+    const swapsAlert = await this.userSwapsAlert.orderBy('timestamp').reverse().limit(limit).toArray();
     return swapsAlert;
   }
   public async getUserSwapsAlertDetails(timestamp: number[]) {

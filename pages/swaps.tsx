@@ -80,7 +80,7 @@ export default function Web(data:any) {
               <tbody>
                 {(swapData ?? []).map((item, i) => (
                   <tr className={i % 2 == 0 ? "" : "bg-gray-100"} key={`swap{i}`}>
-                    <td className="pl-4 py-2">{moment(item.evt_block_time).format("YYYY-MM-DD HH:MM")}</td>
+                    <td className="pl-4 py-2">{moment(item.evt_block_time).format("YYYY-MM-DD hh:mm")}</td>
                     <td className="">{item.fee}</td>
                     <td className="truncate">{item.token0}</td>
                     <td className="truncate">{item.token1}</td>

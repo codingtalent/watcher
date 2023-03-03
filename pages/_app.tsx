@@ -21,14 +21,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const timerQuery = async (blockchain: string, pool: string, amount: number) => {
     clearInterval(intervalTimer);
     let timestamp = moment().valueOf();
-    let formatDate = moment().format('YYYY-MM-DD HH:MM:00');
+    let formatDate = moment().format('YYYY-MM-DD hh:mm:00');
     intervalTimer = setInterval(() => {
       (async () => {
         let res = await fetchSwapsAlertData(formatDate, blockchain, pool, amount);
-        /*let res = {
-          data: {}
-        }*/
-        //console.log(moment().format('YYYY-MM-DD HH:MM:SS'),'timerQuery',intervalTimer);
         if(res.data.result!=undefined){
           if(res.data.result.rows.length > 0){
             let arr: UserSwapsAlertDetails[] = [];
@@ -44,7 +40,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               });
             });
             await db.setUserSwapsAlert(timestamp, arr);
-            //await fetchUserSwapsAlert();
           }
           clearInterval(intervalTimer);
         }
@@ -52,11 +47,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     }, 9000);
   }
 
-  //timerAlert();
 
   useEffect(() => {
     let intervalAlertTimer = setInterval(() => {
-      //console.log(moment().format('YYYY-MM-DD HH:MM:SS'),'useEffect',intervalAlertTimer);
       (async () => {
         let swapsAlertPool:any = await db.getSwapsAlertPool();
         if(typeof(swapsAlertPool)!=undefined){

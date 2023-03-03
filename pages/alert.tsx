@@ -137,7 +137,7 @@ export default function Web(data:any) {
           <div className=" mt-2">
             { alertData.length > 0 && (
               <div className="text-right font-bold">
-                <div className="cursor-pointer" onClick={(e) => dismissAlert(e)}>Remove and Show more</div>
+                <div className="cursor-pointer" onClick={(e) => dismissAlert(e)}>Dismiss</div>
               </div>
             )}
             {(alertData ?? []).map((item, i) => (
