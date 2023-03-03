@@ -30,14 +30,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         if(res.data.result!=undefined){
           if(res.data.result.rows.length > 0){
             let arr: UserSwapsAlertDetails[] = [];
-            res.data.result.rows.forEach(element => {
+            res.data.result.rows.forEach((e:UserSwapsAlertDetails) => {
               arr.push({
-                block_time: element.block_time,
-                amount_usd: element.amount_usd,
-                token_pair: element.token_pair,
-                taker: element.taker,
-                tx_hash: element.tx_hash,
-                project_contract_address: element.project_contract_address,
+                block_time: e.block_time,
+                amount_usd: e.amount_usd,
+                token_pair: e.token_pair,
+                taker: e.taker,
+                tx_hash: e.tx_hash,
+                project_contract_address: e.project_contract_address,
                 timestamp: timestamp
               });
             });

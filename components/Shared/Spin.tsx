@@ -1,4 +1,6 @@
-import { IconProps } from './Icon/ArrowSmallUp'
+export type IconProps = {
+  className?: string
+}
 
 const Spin = ({ className="h-5 w-5" }: IconProps) => {
   return (
