@@ -52,7 +52,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     let intervalAlertTimer = setInterval(() => {
       (async () => {
         let swapsAlertPool:any = await db.getSwapsAlertPool();
-        if(typeof(swapsAlertPool)!=undefined){
+        if(typeof(swapsAlertPool)!="undefined"){
           timerQuery(swapsAlertPool.blockchain, swapsAlertPool.pool_address, swapsAlertPool.threshold);
         }
       })()

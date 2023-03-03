@@ -44,7 +44,7 @@ const Menu: FC = () => {
     return (
       <>
         <NavItem url="/" name="New Pools" current={pathname == '/'} icon="QueueList" />
-        <NavItem url="swaps" name="Latest Swaps" current={pathname == '/swaps'} icon="ArrowsRightLeft" />
+        {/*<NavItem url="swaps" name="Latest Swaps" current={pathname == '/swaps'} icon="ArrowsRightLeft" />*/}
         <NavItem url="alert" name="New Big Swap Alert" current={pathname == '/alert'} icon="Bell" />
       </>
     );
