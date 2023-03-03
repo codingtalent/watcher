@@ -8,8 +8,12 @@ datasource db {
 }
 
 model DuneQuery {
-  id           String   @unique
+  id           BigInt   @unique
+  query_id     Int
   execution_id String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  @@index([execution_id])
+  @@index([createdAt])
 }

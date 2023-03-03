@@ -2,6 +2,7 @@ import axios from 'axios';
 import { hash } from 'object-code';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+const ttl = 1000 * 60 * 5 //ms, default = 5 minute.
 
 // Add a request interceptor ?
 // Add a response interceptor ?
@@ -12,12 +13,16 @@ const instance = axios.create({
 });
 
 export const executeQuery = async (id: string, parameters: any) => {
-  const result = { data: { execution_id: id, state: '' }, error: '', cache: false };
+  const result = { data: { execution_id: '', state: '' }, error: '', cache: false };
   const key = hash({ id, parameters, source: 'dune-execute-query' });
   try {
-    const dQuery = await prisma.duneQuery.findUnique({
+    const current = new Date();
+    current.setTime(current.getTime() - ttl);
+
+    const dQuery = await prisma.duneQuery.findFirst({
       where: {
-        id: String(key),
+        id: BigInt(key),
+        createdAt: { gte: current },
       },
     })
     if (dQuery) {
@@ -26,7 +31,7 @@ export const executeQuery = async (id: string, parameters: any) => {
     } else {
       const { data } = await instance.post(`/query/${id}/execute`, parameters);
       await prisma.duneQuery.create({
-        data: { id: String(key), execution_id: data.execution_id },
+        data: { id: BigInt(key), query_id: Number(id), execution_id: data.execution_id },
       })
       result.data = data;
     }
