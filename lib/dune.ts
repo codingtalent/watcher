@@ -2,7 +2,8 @@ import axios from 'axios';
 import { hash } from 'object-code';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-const ttl = 1000 * 60 * 5 //ms, default = 5 minute.
+const ttl = 1000 * 60 * 60 //ms, default = 60 minute.
+const alertTTL = 1000 * 60 * 5 //ms, default = 5 minute.
 
 // Add a request interceptor ?
 // Add a response interceptor ?
@@ -17,14 +18,14 @@ export const executeQuery = async (id: string, parameters: any) => {
   const key = hash({ id, parameters, source: 'dune-execute-query' });
   try {
     const current = new Date();
-    current.setTime(current.getTime() - ttl);
+    current.setTime(current.getTime() - ((id == '2056547') ? alertTTL : ttl));
 
     const dQuery = await prisma.duneQuery.findFirst({
       where: {
         id: BigInt(key),
         createdAt: { gte: current },
       },
-    })
+    });
     if (dQuery) {
       result.cache = true;
       result.data = { 'execution_id': dQuery.execution_id, 'state': ''};
@@ -47,7 +48,8 @@ export const executeStatus = async (id: string) => {
   try {
     const { data } = await instance.get(`/execution/${id}/status`);
     result.data = data;
-  } catch {
+  } catch(e) {
+    console.log(e);
     result.error = `Error executing dune status: ${id}`;
   }
   return result;
@@ -58,7 +60,8 @@ export const executeResults = async (id: string, ) => {
   try {
     const { data } = await instance.get(`/execution/${id}/results`);
     result.data = data;
-  } catch {
+  } catch(e) {
+    console.log(e);
     result.error = `Error executing dune result: ${id}`;
   }
   return result;
