@@ -141,8 +141,8 @@ export default function Web(data:any) {
                     <td className="">{moment(item.block_time).format("YYYY-MM-DD")}</td>
                     <td className="" title={item.tx_hash}><div className="truncate w-11/12">{item.tx_hash}</div></td>
                     <td>
-                      <a href={`/swaps?blockchain=${blockchain}&address=${item.pool}`} className="mr-2 text-blue-600">Latest Swap</a>
-                      <a href={`/alert?blockchain=${blockchain}&address=${item.pool}`} className="text-blue-600">Swap Alert</a>
+                      <a href={`/swaps?blockchain=${blockchain}&address=${item.pool}`} target="_blank" className="mr-2 text-blue-600">Latest Swap</a>
+                      <a href={`/alert?blockchain=${blockchain}&address=${item.pool}`} target="_blank" className="text-blue-600">Swap Alert</a>
                     </td>
                   </tr>
                 ))}
