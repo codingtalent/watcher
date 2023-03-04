@@ -24,7 +24,7 @@ const FilterItem = ({ name, current, onClick }: ItemProps) => {
 };
 
 const fetchPoolsData = async (blockchain: string, dateRange: number) => {
-  let formatDate = moment().subtract(dateRange, 'days').format('YYYY-MM-DD');
+  let formatDate = moment().utc().subtract(dateRange, 'days').format('YYYY-MM-DD');
   const res = await axios.get("/api/dune/2056212?blockchain=" + blockchain + "&start_datetime=" + formatDate).catch(function (error) {
     return { data: { data: {}}};
   });;

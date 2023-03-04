@@ -22,8 +22,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   const timerQuery = async (blockchain: string, pool: string, amount: number) => {
     clearInterval(intervalTimer);
-    let timestamp = moment().valueOf();
-    let formatDate = moment().format('YYYY-MM-DD hh:mm:00');
+    let timestamp = moment().utc().valueOf();
+    let formatDate = moment().utc().format('YYYY-MM-DD hh:mm:00');
     intervalTimer = setInterval(() => {
       (async () => {
         let res = await fetchSwapsAlertData(formatDate, blockchain, pool, amount);
@@ -48,7 +48,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       })()
     }, 9000);
   }
-
 
   useEffect(() => {
     let intervalAlertTimer = setInterval(() => {
