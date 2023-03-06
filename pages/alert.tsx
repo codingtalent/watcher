@@ -135,6 +135,7 @@ export default function Web(data:any) {
             <input type="text" placeholder="Pool Address" onChange={(e) => changePoolAddress(e)} value={address} className="text-gray-600 py-2 px-4 rounded border border-gray-200 w-96"/>
             <select onChange={(e) => changeThreshold(e)} value={threshold} className="py-2 px-4 rounded border text-gray-600 border-gray-200">
               <option value="0">Select Alert Amount</option>
+              <option value="100">100</option>
               <option value="1000">1000</option>
               <option value="10000">10000</option>
               <option value="100000">100000</option>
