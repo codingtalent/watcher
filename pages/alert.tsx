@@ -70,6 +70,13 @@ export default function Web(data:any) {
     }
   }
 
+  const changePoolAddress = (e:React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    let poolAddress= e.target.value;
+    setAddress(poolAddress);
+    setApplyState(watchingItem, blockchain, poolAddress, threshold);
+  }
+
   const changeBlockchain = (e:React.ChangeEvent<HTMLSelectElement>) => {
     e.preventDefault();
     let bc= e.target.value;
@@ -114,30 +121,30 @@ export default function Web(data:any) {
 
   return (
     <div className="page_content">
-      <div className="flex items-center text-left py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center text-left py-1 px-4 sm:px-2 lg:px-6">
         <div className="w-full space-y-8 mt-5">
-          <h2 className="mt-6 text-left text-4xl font-bold tracking-tight text-gray-900">New Big Swap Alert</h2>
-          <div className="flex gap-2">
-            <select onChange={(e) => changeBlockchain(e)} value={blockchain} className="py-2 px-4 rounded border border-gray-200">
+        <h2 className="text-left text-4xl font-bold tracking-tight text-gray-600">New Big Swap Alert</h2>
+          <div className="flex gap-2 text-gray-600">
+            <select onChange={(e) => changeBlockchain(e)} value={blockchain} className="py-2 px-4 rounded border text-gray-600 border-gray-200">
               <option value="">Select Blockchain</option>
               <option value="ethereum">Ethereum</option>
               <option value="arbitrum">Arbitrum</option>
               <option value="optimism">Optimism</option>
               <option value="polygon">Polygon</option>
             </select>
-            <input type="text" placeholder="Pool Address" onChange={(e) => setAddress(e.target.value)} value={address} className="py-2 px-4 rounded border border-gray-200 w-96"/>
-            <select onChange={(e) => changeThreshold(e)} value={threshold} className="py-2 px-4 rounded border border-gray-200">
+            <input type="text" placeholder="Pool Address" onChange={(e) => changePoolAddress(e)} value={address} className="text-gray-600 py-2 px-4 rounded border border-gray-200 w-96"/>
+            <select onChange={(e) => changeThreshold(e)} value={threshold} className="py-2 px-4 rounded border text-gray-600 border-gray-200">
               <option value="0">Select Alert Amount</option>
               <option value="1000">1000</option>
               <option value="10000">10000</option>
               <option value="100000">100000</option>
             </select>
-            <button disabled={isWatching} onClick={(e) => applyAlertSetting(e)} className="py-2 px-4 rounded border border-gray-200 disabled:bg-gray-300 disabled:text-black disabled:cursor-text cursor-pointer bg-blue-900 text-white">{ isWatching ? "Watching" : "Apply"}</button>
+            <button disabled={isWatching} onClick={(e) => applyAlertSetting(e)} className="py-2 px-4 rounded border border-gray-200 disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-text cursor-pointer bg-blue-900 text-white">{ isWatching ? "Watching" : "Apply"}</button>
           </div>
           <div className=" mt-2">
             { alertData.length > 0 && (
               <div className="text-right font-bold">
-                <div className="cursor-pointer" onClick={(e) => dismissAlert(e)}>Dismiss</div>
+                <div className="py-2 px-4 rounded border bg-gray-300 text-gray-600 cursor-pointer inline-block" onClick={(e) => dismissAlert(e)}>Dismiss</div>
               </div>
             )}
             {(alertData ?? []).map((item, i) => (

@@ -13,10 +13,10 @@ export type ItemProps = {
 const FilterItem = ({ name, current, onClick }: ItemProps) => {
   return (
     <div onClick={onClick}  className={clsx(
-      'cursor-pointer leading-6 py-2 px-4 rounded',
+      'cursor-pointer leading-6 py-1 px-2 rounded hover:bg-gray-600 hover:text-white min-w-[90px] text-center',
       {
-        'bg-blue-600 text-white ': current,
-        'bg-blue-100 text-purple-800 ':
+        'bg-gray-600 text-white ': current,
+        'bg-gray-400 text-white ':
           !current
       }
     )}>{name}</div>
@@ -97,22 +97,22 @@ export default function Web(data:any) {
 
   return (
     <div className="page_content">
-      <div className="flex items-center text-left py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center text-left py-1 px-4 sm:px-2 lg:px-6">
         { loading && <Loading />}
         <div className="w-full space-y-8 mt-5">
-          <h2 className="mt-6 text-left text-4xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-left text-4xl font-bold tracking-tight text-gray-600">
             New Pools
           </h2>
           <div className="flex flex-col space-y-8">
             <div className="flex gap-4">
-              <h3 className="leading-10">Select Blockchain</h3>
+              <h3 className="leading-6 w-[130px] text-gray-600">Select Blockchain</h3>
               <FilterItem key="ethereum" onClick={(e:Event) => changeBlockchain(e,'ethereum')} name="Ethereum" current={blockchain == 'ethereum'} />
               <FilterItem key="arbitrum" onClick={(e:Event) => changeBlockchain(e,'arbitrum')} name="Arbitrum" current={blockchain == 'arbitrum'} />
               <FilterItem key="optimism" onClick={(e:Event) => changeBlockchain(e,'optimism')} name="Optimism" current={blockchain == 'optimism'} />
               <FilterItem key="polygon" onClick={(e:Event) => changeBlockchain(e,'polygon')} name="Polygon" current={blockchain == 'polygon'} />
             </div>
             <div className="flex gap-4">
-              <h3 className="leading-10">Date Range</h3>
+              <h3 className="leading-6 w-[130px] text-gray-600">Date Range</h3>
               <FilterItem key="d1" onClick={(e:Event) => changeDate(e,0)} name="Today" current={dateRange == 0} />
               <FilterItem key="d2" onClick={(e:Event) => changeDate(e,1)} name="Yesterday" current={dateRange == 1} />
               <FilterItem key="d3" onClick={(e:Event) => changeDate(e,7)} name="7 Days" current={dateRange == 7} />
@@ -121,10 +121,10 @@ export default function Web(data:any) {
             </div>
           </div>
           <div className="mt-2">
-            <table className="w-full border-collapse border border-gray-300 table-fixed text-sm">
+            <table className="w-full border-collapse border border-gray-300 bg-white table-fixed text-sm">
               <thead>
-                <tr className="border border-gray-300 bg-gray-200 capitalize">
-                  <th className="text-left font-normal w-1/12 pl-4 py-2">pool_name</th>
+                <tr className="border border-gray-400 bg-gray-400 capitalize text-white">
+                  <th className="text-left font-normal w-1/12 pl-2 py-2">pool_name</th>
                   <th className="text-left font-normal w-1/12">fee_rate</th>
                   <th className="text-left font-normal w-4/12">pool</th>
                   <th className="text-left font-normal w-1/12">block_time</th>
@@ -134,8 +134,8 @@ export default function Web(data:any) {
               </thead>
               <tbody>
                 {(poolData ?? []).map((item:any, i) => (
-                  <tr className={i % 2 == 0 ? "" : "bg-gray-100"} key={`pool${i}`}>
-                    <td className="pl-4 py-2">{item.pool_name}</td>
+                  <tr className={i % 2 == 0 ? "" : "bg-gray-200"} key={`pool${i}`}>
+                    <td className="pl-2 py-2">{item.pool_name}</td>
                     <td className="">{item.fee_rate}</td>
                     <td className="">{item.pool}</td>
                     <td className="">{moment(item.block_time).format("YYYY-MM-DD")}</td>

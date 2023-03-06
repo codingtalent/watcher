@@ -24,8 +24,8 @@ const Menu: FC = () => {
           className={clsx(
             'w-full h-14 space-x-2 text-left px-2 md:px-3 font-bold cursor-pointer text-sm tracking-wide',
             {
-              'text-black bg-gray-200': current,
-              'text-white hover:text-black  hover:bg-gray-200':
+              'text-black bg-gray-50': current,
+              'text-white hover:text-black  hover:bg-gray-50':
                 !current
             }
           )}

@@ -52,10 +52,10 @@ export default function Web(data:any) {
 
   return (
     <div className="page_content">
-      <div className="flex items-center text-left py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center text-left py-1 px-4 sm:px-2 lg:px-6">
         { loading && <Loading />}
         <div className="w-full space-y-8 mt-5">
-          <h2 className="mt-6 text-left text-4xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-left text-4xl font-bold tracking-tight text-gray-600">
             { address=='' ? (
               <span className="mr-2 italic">No Pool Address or Blockchain</span>
             ) : (
@@ -65,10 +65,10 @@ export default function Web(data:any) {
             )}
           </h2>
           <div className="mt-2">
-            <table className="w-full table-fixed border-collapse border border-gray-300 text-xs">
+            <table className="w-full table-fixed border-collapse border border-gray-300 bg-white text-sm">
               <thead>
-                <tr className="border border-gray-300 bg-gray-200 capitalize">
-                  <th className="text-left font-normal w-1/12 pl-4 py-2">evt_block_time</th>
+                <tr className="border border-gray-400 bg-gray-400 capitalize text-white">
+                  <th className="text-left font-normal w-1/12 pl-2 py-2">evt_block_time</th>
                   <th className="text-left font-normal w-1/12">fee</th>
                   <th className="text-left font-normal w-1/12">token0</th>
                   <th className="text-left font-normal w-1/12">token1</th>
@@ -81,8 +81,8 @@ export default function Web(data:any) {
               </thead>
               <tbody>
                 {(swapData ?? []).map((item:any, i) => (
-                  <tr className={i % 2 == 0 ? "" : "bg-gray-100"} key={`swap{i}`}>
-                    <td className="pl-4 py-2">{moment(item.evt_block_time).format("YYYY-MM-DD hh:mm")}</td>
+                  <tr className={i % 2 == 0 ? "" : "bg-gray-200"} key={`swap{i}`}>
+                    <td className="pl-2 py-2">{moment(item.evt_block_time).format("YYYY-MM-DD hh:mm")}</td>
                     <td className="">{item.fee}</td>
                     <td className="truncate">{item.token0}</td>
                     <td className="truncate">{item.token1}</td>

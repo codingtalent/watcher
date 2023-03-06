@@ -7,7 +7,7 @@ import Logo from '../../../public/logo.svg';
 
 const Aside: FC = () => {
   return (
-    <aside className='bg-gray-500 hidden md:order-first h-screen md:flex md:flex-col w-60'>
+    <aside className='bg-gray-600 hidden md:order-first h-screen md:flex md:flex-col w-60'>
       <div className='flex-grow-0 flex-shrink-0 text-center border-b-2 border-gray-300'>
         <Link href="/" className="inline-block my-10 text-white">
           <Image

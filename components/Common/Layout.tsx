@@ -17,7 +17,7 @@ const Layout: FC<Props> = ({ children }) => {
       <Head>
         <meta name="theme-color" content='#ffffff' />
       </Head>
-      <div id="content-wrapper" className='w-full mx-auto h-screen flex overflow-hidden'>
+      <div id="content-wrapper" className='w-full mx-auto h-screen flex overflow-hidden bg-gray-50'>
         <Aside />
         <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
           <Navbar />
